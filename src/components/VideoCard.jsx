@@ -18,7 +18,7 @@ const VideoCard = ({ video }) => {
                     )}
                 </div>
 
-                <div className='flex text-white mt-3'>
+                <div className='flex text-white mt-3 dark:text-black'>
                     <div className='flex items-start'>
                         <div className='flex h-9 w-9 rounded-full overflow-hidden'>
                             <img src={video?.author?.avatar[0]?.url} />
@@ -30,15 +30,15 @@ const VideoCard = ({ video }) => {
                             {video?.title}
                         </span>
 
-                        <span className='text-[12px] font-semibold mt-2 text-white/[0.7] flex items-center'>
+                        <span className='text-[12px] font-semibold mt-2 text-white/[0.7] flex items-center dark:text-black/[0.7]'>
                             {video?.author?.title}
                             {video?.author?.badges[0]?.type ===
                                 "VERIFIED_CHANNEL" && (
-                                <BsFillCheckCircleFill className='text-white/[0.5] text-[12px] ml-1' />
+                                <BsFillCheckCircleFill className='text-white/[0.5] text-[12px] ml-1 dark:text-black/[0.5]' />
                             )}
                         </span>
 
-                        <div className='flex text-[12px] font-semibold text-white/[0.7] truncate overflow-hidden'>
+                        <div className='flex text-[12px] font-semibold text-white/[0.7] truncate overflow-hidden dark:text-black/[0.7]'>
                             <span>
                                 {" "}
                                 {`${abbreviateNumber(
@@ -46,7 +46,7 @@ const VideoCard = ({ video }) => {
                                     2
                                 )}`}{" "}
                             </span>
-                            <span className='flex text-[24px] leading-none font-bold text-white/[0.7] relative top-[-10px] mx-1'>
+                            <span className='flex text-[24px] leading-none font-bold text-white/[0.7] relative top-[-10px] mx-1 dark:text-black/[0.7]'>
                                 .
                             </span>
                             <span className='truncate'>

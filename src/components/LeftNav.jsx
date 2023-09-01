@@ -5,6 +5,8 @@ import { BiHeart } from 'react-icons/bi'
 import LeftNavMenuItem from './LeftNavMenuItem';
 import { categories } from '../utility/constants'
 import { Context } from '../context/contextApi';
+import ToggleSwitch from '../shared/Toggle Switch/ToggleSwitch';
+
 
 const LeftNav = ({childStyle}) => {
 
@@ -31,6 +33,14 @@ const LeftNav = ({childStyle}) => {
 useEffect(() => {
   ref.current.classList.add(childStyle);
   
+  // for changing scroll color
+
+ 
+
+
+
+
+
 
   ref.current.addEventListener('mouseenter', () => {
     ref.current.classList.add('show-scroll-bar');
@@ -43,8 +53,11 @@ useEffect(() => {
 
 }, [childStyle]);
 
+
+
+
   return (
-    <div ref={ref} className={'custom-scroll-bar block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all '} style= {{ transform: mobileMenu ? 'translateX(0)' : '',
+    <div ref={ref} className={'custom-scroll-bar block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all dark:bg-white'} style= {{ transform: mobileMenu ? 'translateX(0)' : '',
         
      }}>
       <div className="flex px-5 flex-col ">
@@ -59,19 +72,21 @@ useEffect(() => {
                     navigate("/");
                   }}
                   className={
-                    selectCategories === item.name ? "bg-white/[0.15]" : null
+                    selectCategories === item.name ? "bg-white/[0.15] dark:bg-stone-300/[0.6] " : null
                   }
                 />
-                {item.divider && <hr className="my-5 border-white/[0.3]" />}
+                {item.divider && <hr className="my-5 border-white/[0.3] dark:border-black/[0.3] " />}
               </React.Fragment>
             );
         })}
 
-        <hr className="my-5 border-white/[0.3]" />
-        <div className="text-white/[0.5] text-[14px] flex flex-row">
+        <hr className="my-5 border-white/[0.3] dark:border-black/[0.3]" />
+        <div className="text-white/[0.5] text-[14px] flex flex-row dark:text-black/[0.6]">
           Made with <BiHeart className='mt-1 text-red-600 mr-2 ml-1'/> Ihtisham Ul Haq
         </div>
       </div>
+
+      <div className='text-white/[0.5] text-[14px] ml-12  dark:text-black/[0.6]'> Dark Mode : {" "} <ToggleSwitch scrollBar={ref}/> </div>
     </div>
   )
 }

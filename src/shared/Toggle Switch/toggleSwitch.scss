@@ -1,0 +1,102 @@
+.toggle-switch {
+        
+        position: relative;
+        width: 45px;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: left;
+        
+
+        input {
+                display: none;
+        }
+
+        label {
+                display: block;
+                overflow: hidden;
+                cursor: pointer;
+                border: 0 solid #bbb;
+                border-radius: 20px;
+                margin: 0;
+        }
+
+        &-inner {
+                display: block;
+                width: 200%;
+                margin-left: -100%;
+                transition: margin 0.3s ease-in 0s;
+
+                &::before,
+                &::after {
+                        display: block;
+                        float: left;
+                        width: 50%;
+                        height: 18px;
+                        padding: 0;
+                        line-height: 18px;
+                        font-size: 10px;
+                        color: white;
+                        font-weight: bold;
+                        box-sizing: border-box;
+                        
+                        
+                }
+
+                &::before {
+                        content: "On";
+                        text-transform: uppercase;
+                        padding-left: 10px;
+                        
+                        background-color: #f90;
+                        color: #fff;
+                }
+        }
+
+        // &-disabled {
+        //         background-color: #ddd;
+        //         cursor: not-allowed;
+
+        //         &::before {
+        //                 background-color: #ddd;
+        //                 cursor: not-allowed;
+        //         }
+        // }
+
+        &-inner:after {
+                content: "off";
+                
+                text-transform: uppercase;
+                padding-right: 7px;
+                background-color: #bbb;
+                color: #fff;
+                text-align: right;
+                
+        }
+
+        &-switch {
+                display: block;
+                width: 11px;
+                height: 11px;
+                margin: auto;
+                background-color: #fff;
+                position: absolute;
+                top: 2px;
+                bottom: 0;
+                right: 28px;
+                border: 0 solid #bbb;
+                
+                border-radius: 1000px;
+                transition: all 0.3s ease-in 0s;
+        }
+
+        &-checkbox:checked+&-label {
+                .toggle-switch-inner {
+                        margin-left: 0;
+                }
+
+                .toggle-switch-switch {
+                        right: 5px;
+                        
+                }
+        }
+}

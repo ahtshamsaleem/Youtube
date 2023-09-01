@@ -50,7 +50,7 @@ const VideoDetails = () => {
 
     return (
         <>
-            <div className='ralative pt-2 m-0 h-[calc(100%-56px)]  bg-black' >
+            <div className='ralative pt-2 m-0 h-[calc(100%-56px)]  bg-black dark:bg-white' >
                 <LeftNav childStyle='hideLeftNav'/>
                 <div className='flex justify-center flex-row h-[calc(100%-56px)]'>
                     <div className='w-full max-w-[1280px] flex flex-col lg:flex-row'>
@@ -65,7 +65,7 @@ const VideoDetails = () => {
                                 />
                             </div>
 
-                            <div className='text-white font-bold text-sm md:text-xl mt-4 line-clamp-2'>
+                            <div className='text-white font-bold text-sm md:text-xl mt-4 line-clamp-2 dark:text-black'>
                                 {video?.title}
                             </div>
 
@@ -84,15 +84,15 @@ const VideoDetails = () => {
                                     </div>
 
                                     <div className='flex flex-col ml-3'>
-                                        <div className='text-white text-md font-semibold flex items-center'>
+                                        <div className='text-white text-md font-semibold flex items-center dark:text-black'>
                                             {video?.author?.title}
                                             {video?.author?.badges[0]?.type ===
                                                 "VERIFIED_CHANNEL" && (
-                                                <BsFillCheckCircleFill className='text-white/[0.5] text-[12px] ml-1' />
+                                                <BsFillCheckCircleFill className='text-white/[0.5] text-[12px] ml-1 dark:text-black/[0.5]' />
                                             )}
                                         </div>
 
-                                        <div className='text-white/[0.7] text-sm'>
+                                        <div className='text-white/[0.7] text-sm dark:text-black/[0.7]'>
                                             {
                                                 video?.author?.stats
                                                     ?.subscribersText
@@ -101,9 +101,9 @@ const VideoDetails = () => {
                                     </div>
                                 </div>
 
-                                <div className='flex text-white mt-4 md:mt-0'>
-                                    <div className='flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15] '>
-                                        <AiOutlineLike className='text-xl text-white mr-2 ' />
+                                <div className='flex text-white mt-4 md:mt-0 dark:text-black'>
+                                    <div className='flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15] dark:bg-black/[0.15]'>
+                                        <AiOutlineLike className='text-xl text-white mr-2 dark:text-black' />
                                         <span>
                                             {" "}
                                             {`${abbreviateNumber(
@@ -113,8 +113,8 @@ const VideoDetails = () => {
                                         </span>
                                     </div>
 
-                                    <div className='flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15] ml-4 '>
-                                        <AiOutlineLike className='text-xl text-white mr-2 ' />
+                                    <div className='flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15] ml-4 dark:bg-black'>
+                                        <AiOutlineLike className='text-xl text-white mr-2 dark:text-black' />
                                         <span>
                                             {" "}
                                             {`${abbreviateNumber(

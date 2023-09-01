@@ -132,6 +132,9 @@ code {
   border-radius: 50px;
 }
 
+.black-scroll::-webkit-scrollbar-thumb {
+  background-color: #353535c0;
+}
 
 
 .show-scroll-bar::-webkit-scrollbar {
