@@ -5,7 +5,7 @@ export const Context = createContext();
 
 export const AppContext = (props) => {
   const [loading, setLoading] = useState(false);
-  const [searchResults, setSearchResults] = useState(['video1', 'ssadjsadjhjkfhsadkfhadsklfhjkdsahf']);
+  const [searchResults, setSearchResults] = useState([]);
   const [selectCategories, setSelectCategories] = useState("New");
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -20,12 +20,13 @@ export const AppContext = (props) => {
       .then(({ contents }) => {
         console.log(contents);
         setSearchResults(contents);
+        setLoading(false);
       })
 
       .catch((err) => {
         console.log(err.message);
       });
-    setLoading(false);
+    
   };
 
   return (

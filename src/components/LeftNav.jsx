@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BiHeart } from 'react-icons/bi'
 
@@ -6,13 +6,16 @@ import LeftNavMenuItem from './LeftNavMenuItem';
 import { categories } from '../utility/constants'
 import { Context } from '../context/contextApi';
 
-const LeftNav = () => {
+const LeftNav = ({childStyle}) => {
 
-  const {selectCategories, setSelectCategories, mobileMenu} = useContext(Context);
+  const { selectCategories, setSelectCategories, mobileMenu, setMobileMenu} = useContext(Context);
 
   const navigate = useNavigate();
 
+  const ref = useRef();
+
   const clickHandler = (name, type) => {
+    setMobileMenu(false)
     switch (type) {
       case "category":
         return setSelectCategories(name);
@@ -25,9 +28,25 @@ const LeftNav = () => {
     }
   };
 
+useEffect(() => {
+  ref.current.classList.add(childStyle);
+  
+
+  ref.current.addEventListener('mouseenter', () => {
+    ref.current.classList.add('show-scroll-bar');
+  });
+
+  ref.current.addEventListener('mouseleave', () => {
+    ref.current.classList.remove('show-scroll-bar');
+  });
+
+
+}, [childStyle]);
 
   return (
-    <div className={'md:block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all '} style= {{ transform: mobileMenu ? 'translateX(0)' : '' }}>
+    <div ref={ref} className={'custom-scroll-bar block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all '} style= {{ transform: mobileMenu ? 'translateX(0)' : '',
+        
+     }}>
       <div className="flex px-5 flex-col ">
         {categories.map((item) => {
             return (
