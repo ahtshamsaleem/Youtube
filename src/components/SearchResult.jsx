@@ -5,11 +5,12 @@ import { fetchDataFromApi } from "../utility/api";
 import { Context } from "../context/contextApi";
 import  LeftNav  from "./LeftNav";
 import  SearchResultVideoCard  from "./SearchResultVideoCard";
+import Backdrop from "../shared/BackDrop";
 
 const SearchResult = () => {
     const [result, setResult] = useState();
     const { searchQuery } = useParams();
-    const { setLoading } = useContext(Context);
+    const { setLoading, mobileMenu, setMobileMenu, setModal, setModalMsg, modal } = useContext(Context);
 
     useEffect(() => {
         document.getElementById("root").classList.remove("custom-h");
@@ -21,12 +22,19 @@ const SearchResult = () => {
         fetchDataFromApi("/search/?q=" + searchQuery).then((res) => {
             setResult(res.contents);
             setLoading(false);
-        });
+            setModal(false);
+        })
+        .catch((error) => {
+            setModalMsg(error.message);
+            setModal(true);
+        })
     };
 
     return (
-        <div className='flex flex-row h-[calc(100%-56px)] '>
+        <div className='flex flex-row h-[calc(100%-56px)] relative'>
             <LeftNav />
+
+            {mobileMenu ? <Backdrop close={() => setMobileMenu(false)} /> : null}
             <div className='grow w-[calc(100%-240px)] h-full overflow-y-auto bg-black dark:bg-white'>
                 <div className='grid grid-cols-1 gap-2 p-5 '>
                     {result?.map((item) => {

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import ytLogo from "../assets/images/yt-logo.png";
+import ytLogoDark from "../assets/images/ytLogoBlack.png";
 import ytLogoMobile from "../assets/images/yt-logo-mobile.png";
 
 import { SlMenu } from "react-icons/sl";
@@ -16,12 +17,13 @@ import Loader from "../shared/Loader";
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
-    const { loading, mobileMenu, setMobileMenu } = useContext(Context);
+    const { loading, mobileMenu, setMobileMenu, isDark } = useContext(Context);
 
     const navigate = useNavigate();
 
+    
     const searchQueryHandler = (event) => {
-        console.log(event)
+        
         if (
             (event?.key === "Enter" || event._reactName === "onClick") &&
             searchQuery?.length > 0
@@ -56,7 +58,7 @@ const Header = () => {
                 <Link to='/' className='flex h-5 items-center '>
                     <img
                         className='h-full hidden md:block '
-                        src={ytLogo}
+                        src={isDark ? ytLogo : ytLogoDark}
                         alt='Youtube'
                     />
                     <img
@@ -80,8 +82,8 @@ const Header = () => {
                         value={searchQuery}
                     />
                 </div>
-                <button className='w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1] dark:bg-gray-200/[0.6]'>
-                    <IoIosSearch className='text-white text-xl dark:text-black' onClick={searchQueryHandler}/>
+                <button className='w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1] dark:bg-gray-200/[0.6]' onClick={searchQueryHandler}>
+                    <IoIosSearch className='text-white text-xl dark:text-black' />
                 </button>
             </div>
 

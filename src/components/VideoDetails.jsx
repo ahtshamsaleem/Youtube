@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineLike, AiOutlineEye } from "react-icons/ai";
 import { abbreviateNumber } from "js-abbreviation-number";
 
 import LeftNav from "./LeftNav";
@@ -10,15 +10,21 @@ import { fetchDataFromApi } from "../utility/api";
 import { Context } from "../context/contextApi";
 import SuggestionVideoCard from "./SuggestionVideoCard";
 
+
 const VideoDetails = () => {
     const [video, setVideo] = useState();
     const [relatedVideos, setRelatedVideos] = useState();
     const { id } = useParams();
-    const { setLoading } = useContext(Context);
+    const { setLoading, mobileMenu } = useContext(Context);
 
+
+    // if (mobileMenu) {
+    //    document.querySelector('.related-videos').style.overflowY = 'hidden';
+    // }
 
     useEffect(() => {
         document.getElementById("root").classList.add("custom-h");
+       
         fetchVideoDetails();
         fetchRelatedVideos();
         
@@ -38,7 +44,7 @@ const VideoDetails = () => {
     const fetchRelatedVideos = () => {
         setLoading(true);
         fetchDataFromApi("/video/related-contents/?id=" + id).then((res) => {
-            console.log(res);
+            
             setRelatedVideos(res);
             setLoading(false);
         });
@@ -113,8 +119,8 @@ const VideoDetails = () => {
                                         </span>
                                     </div>
 
-                                    <div className='flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15] ml-4 dark:bg-black'>
-                                        <AiOutlineLike className='text-xl text-white mr-2 dark:text-black' />
+                                    <div className='flex items-center justify-center h-11 px-6 rounded-3xl bg-white/[0.15] ml-4 dark:bg-black/[0.15]'>
+                                        <AiOutlineEye className='text-xl text-white mr-2 dark:text-black' />
                                         <span>
                                             {" "}
                                             {`${abbreviateNumber(
@@ -127,9 +133,10 @@ const VideoDetails = () => {
                             </div>
                         </div>
 
-                        <div className='flex flex-col py-6 px-4 overflow-y-auto lg:w-[350px] xl:w-[400px] custom-scroll-bar-2'>
-                            {relatedVideos?.contents?.map((item, index) => {
-                                if (item.type !== "video") {
+                        <div className='related-videos flex flex-col py-6 px-4 overflow-y-auto lg:w-[350px] xl:w-[400px] custom-scroll-bar-2'>
+                            {   
+                                relatedVideos?.contents?.map((item, index) => {
+                                if (item.type !== "video" || mobileMenu === true) {
                                     return false;
                                 }
                                 return (

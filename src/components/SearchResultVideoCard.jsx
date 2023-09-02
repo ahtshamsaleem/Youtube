@@ -21,7 +21,7 @@ const SearchResultVideoCard = ({video}) => {
               </div>
 
               <div className="flex flex-col ml-4 md:ml-6 mt-4 md:mt-0 overflow-hidden ">
-                <span className="text-lg md:text-2xl font-semibold line-clamp-2 text-white dark:text-black">
+                <span className="text-lg md:text-2xl font-semibold line-clamp-2 text-white dark:text-black/[0.8]">
                     {video?.title}
                 </span>
                 <span className='empty:hidden text-sm line-clamp-1 md:line-clamp-2 text-white/[0.7] md:pr-24 md:my-4 dark:text-black/[0.7]'>
