@@ -40,7 +40,7 @@ const Header = () => {
     const pageName = pathName?.split("/")?.filter(Boolean)?.[0];
 
     return (
-        <div className='sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 py-2 md:px-5 bg-black dark:bg-white'>
+        <div className='sticky top-0 z-20 md:z-10 flex flex-row items-center justify-between h-14 px-4 py-2 md:px-5 bg-black dark:bg-white'>
             {loading && <Loader />}
             <div className='flex h-5 items-center'>
                 {pageName !== "video" && (

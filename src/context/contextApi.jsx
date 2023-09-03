@@ -14,9 +14,13 @@ export const AppContext = (props) => {
   const [modal, setModal] = useState(false);
   const [modalMsg, setModalMsg] = useState('');
 
+ 
   useEffect(() => {
+
     fetchSelectedCategoryData(selectCategories);
   }, [selectCategories]);
+
+
 
 
   const fetchSelectedCategoryData = (query) => {
@@ -24,6 +28,7 @@ export const AppContext = (props) => {
     setLoading(true);
     fetchDataFromApi("/search/?q=" + query)
       .then(({ contents }) => {
+        
 
         setSearchResults(contents);
         setLoading(false);

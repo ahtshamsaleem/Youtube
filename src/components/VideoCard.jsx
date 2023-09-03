@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import VideoLength from "../shared/VideoLength";
 
-const VideoCard = ({ video }) => {
+
+
+const VideoCard = ({ video, setLoadingTrue }) => {
     return (
-        <Link to={`/video/${video?.videoId}`}>
+        <Link to={`/video/${video?.videoId}`}  >
             <div className='flex flex-col mb-8'>
                 <div className='relative h-48 md:h-40 rounded-xl overflow-hidden'>
                     <img

@@ -9,22 +9,21 @@ import LeftNav from "./LeftNav";
 import { fetchDataFromApi } from "../utility/api";
 import { Context } from "../context/contextApi";
 import SuggestionVideoCard from "./SuggestionVideoCard";
+import Backdrop from "../shared/Backdrop";
 
 
 const VideoDetails = () => {
     const [video, setVideo] = useState();
     const [relatedVideos, setRelatedVideos] = useState();
     const { id } = useParams();
-    const { setLoading, mobileMenu } = useContext(Context);
+    const { loading, setLoading, mobileMenu, setMobileMenu } = useContext(Context);
 
-
-    // if (mobileMenu) {
-    //    document.querySelector('.related-videos').style.overflowY = 'hidden';
-    // }
+   
 
     useEffect(() => {
-        document.getElementById("root").classList.add("custom-h");
-       
+        //document.getElementById("root").classList.add("custom-h");
+        //document.getElementById("root").classList.remove("custom-h");
+     
         fetchVideoDetails();
         fetchRelatedVideos();
         
@@ -34,7 +33,7 @@ const VideoDetails = () => {
         setLoading(true);
         fetchDataFromApi("/video/details/?id=" + id)
             .then((res) => {
-                console.log(res);
+   
                 setVideo(res);
                 setLoading(false);
             })
@@ -55,12 +54,18 @@ const VideoDetails = () => {
 
 
     return (
-        <>
-            <div className='ralative pt-2 m-0 h-[calc(100%-56px)]  bg-black dark:bg-white' >
-                <LeftNav childStyle='hideLeftNav'/>
-                <div className='flex justify-center flex-row h-[calc(100%-56px)]'>
-                    <div className='w-full max-w-[1280px] flex flex-col lg:flex-row'>
-                        <div className='flex flex-col lg:w-[calc(100%-350px)] xl-w-[calc(100%-40px)] px-4 py-3 lg:py-6 overflow-y-auto'>
+        <>  
+            {mobileMenu ? <Backdrop  close={() => setMobileMenu(false)} /> : null}
+
+            
+
+            <div className='relative pt-2 m-0 h-[calc(100%-56px)]  bg-black dark:bg-white ' >
+                 <LeftNav childStyle='hideLeftNav'/>  
+                
+                {!loading && (
+                    <div className='flex justify-center flex-row h-full'>
+                    <div className='w-full max-w-[1280px] flex flex-col lg:flex-row h-auto overflow-y-auto'>
+                        <div className='flex flex-col lg:w-[calc(100%-350px)] xl-w-[calc(100%-40px)] px-4 py-3 lg:py-6 '>
                             <div className='h-[200px] md:h-[400px] lg:h-[400px] xl:h-[550px] ml-[-16px] lg:ml-0 mr-[-16px] lg:mr-0'>
                                 <ReactPlayer
                                     url={"http://www.youtube.com/watch?v=" + id}
@@ -78,7 +83,7 @@ const VideoDetails = () => {
                             <div className='flex justify-between flex-col md:flex-row mt-4'>
                                 <div className='flex'>
                                     <div className='flex items-start'>
-                                        <div className='flex h-11 w-11 rounded-full overflow-hidden'>
+                                        <div className='flex h-11 w-11 rounded-full'>
                                             <img
                                                 src={
                                                     video?.author?.avatar[0]
@@ -133,10 +138,10 @@ const VideoDetails = () => {
                             </div>
                         </div>
 
-                        <div className='related-videos flex flex-col py-6 px-4 overflow-y-auto lg:w-[350px] xl:w-[400px] custom-scroll-bar-2'>
+                        <div className='related-videos flex flex-col py-6 px-4  lg:w-[350px] xl:w-[400px] custom-scroll-bar-2'>
                             {   
                                 relatedVideos?.contents?.map((item, index) => {
-                                if (item.type !== "video" || mobileMenu === true) {
+                                if (item.type !== "video" ) {
                                     return false;
                                 }
                                 return (
@@ -149,6 +154,7 @@ const VideoDetails = () => {
                         </div>
                     </div>
                 </div>
+                )}
             </div>
         </>
     );

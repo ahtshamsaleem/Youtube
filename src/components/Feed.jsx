@@ -6,16 +6,16 @@ import Backdrop from '../shared/Backdrop'
 
 
 const Feed = () => {
-    const { loading, searchResults, mobileMenu, setMobileMenu } = useContext(Context);
+    const { loading, setLoading, searchResults, mobileMenu, setMobileMenu } = useContext(Context);
 
-    useEffect(() => {
-        document.getElementById("root").classList.remove("custom-h");
-    }, []);
 
     return (
-        <div className='flex flex-row h-[calc(100%-56px)] relative '>
+        <>
+            {mobileMenu ? <Backdrop  close={() => setMobileMenu(false)} /> : null}
+
+            <div className='flex flex-row h-[calc(100%-56px)] relative '>
             <LeftNav />
-            {mobileMenu ? <Backdrop close={() => setMobileMenu(false)} /> : null}
+            
             <div className='grow w-[calc(100%-240px)] h-full overflow-y-auto bg-black custom-scroll-bar-2 dark:bg-white'>
                 <div className='grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-2'>
                     {!loading &&
@@ -26,12 +26,15 @@ const Feed = () => {
                                 <VideoCard
                                     key={item?.video?.videoId}
                                     video={item?.video}
+                                    setLoadingTrue={setLoading}
                                 />
                             );
                         })}
                 </div>
             </div>
         </div>
+        </>
+        
     );
 }
 

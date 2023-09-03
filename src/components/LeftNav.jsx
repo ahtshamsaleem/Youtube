@@ -57,7 +57,7 @@ useEffect(() => {
 
 
   return (
-    <div ref={ref} className={'custom-scroll-bar block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative md:z-10 z-20 translate-x-[-240px] md:translate-x-0 transition-all dark:bg-white'} style= {{ transform: mobileMenu ? 'translateX(0)' : '',
+    <div ref={ref} className={'custom-scroll-bar block w-[240px] overflow-y-auto h-[calc(100vh-56px)] py-4 bg-black absolute top-0 md:relative md:z-10 z-[19]   translate-x-[-240px] md:translate-x-0 transition-all dark:bg-white'} style= {{ transform: mobileMenu ? 'translateX(0)' : '',
         
      }}>
       <div className="flex px-5 pr-0 flex-col w-[calc(240px-3vw)] ">

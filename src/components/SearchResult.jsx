@@ -13,7 +13,7 @@ const SearchResult = () => {
     const { setLoading, mobileMenu, setMobileMenu, setModal, setModalMsg, modal } = useContext(Context);
 
     useEffect(() => {
-        document.getElementById("root").classList.remove("custom-h");
+       
         fetchSearchResults();
     }, [searchQuery]);
 
@@ -31,10 +31,12 @@ const SearchResult = () => {
     };
 
     return (
-        <div className='flex flex-row h-[calc(100%-56px)] relative'>
+        <>
+            {mobileMenu ? <Backdrop close={() => setMobileMenu(false)} /> : null}
+            <div className='flex flex-row h-[calc(100%-56px)] relative'>
             <LeftNav />
 
-            {mobileMenu ? <Backdrop close={() => setMobileMenu(false)} /> : null}
+            
             <div className='grow w-[calc(100%-240px)] h-full overflow-y-auto bg-black dark:bg-white'>
                 <div className='grid grid-cols-1 gap-2 p-5 '>
                     {result?.map((item) => {
@@ -50,6 +52,8 @@ const SearchResult = () => {
                 </div>
             </div>
         </div>
+        </>
+        
     );
 };
 
