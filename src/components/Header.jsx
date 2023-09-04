@@ -16,11 +16,8 @@ import Loader from "../shared/Loader";
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
-
     const { loading, mobileMenu, setMobileMenu, isDark } = useContext(Context);
-
     const navigate = useNavigate();
-
     
     const searchQueryHandler = (event) => {
         

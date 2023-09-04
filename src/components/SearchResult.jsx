@@ -37,14 +37,14 @@ const SearchResult = () => {
             <LeftNav />
 
             
-            <div className='grow w-[calc(100%-240px)] h-full overflow-y-auto bg-black dark:bg-white'>
+            <div className='grow w-[calc(100%-240px)] h-full overflow-y-auto bg-black dark:bg-white custom-scroll-bar-2'>
                 <div className='grid grid-cols-1 gap-2 p-5 '>
                     {result?.map((item) => {
                         if (item?.type !== "video") return false
                         let video = item?.video;
                         return (
                             <SearchResultVideoCard
-                                key={video?.videoId}
+                                key={video?.videoId + Math.random().toString()}
                                 video={video}
                             />
                         );
